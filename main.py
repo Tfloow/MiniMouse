@@ -25,17 +25,50 @@ def create_maze(size):
     return maze
 
 def good_maze():
-    maze = [[3, 0, 0, 0, 0, 1, 1, 0, 0, 0,],
-            [1, 1, 1, 0, 0, 0, 0, 0, 0, 1,],
-            [1, 1, 1, 1, 0, 1, 1, 0, 1, 0,],
-            [1, 0, 1, 0, 1, 0, 0, 0, 0, 0,],
-            [0, 0, 1, 1, 0, 0, 0, 0, 0, 0,],
-            [2, 0, 0, 1, 0, 0, 0, 0, 0, 1,],
-            [0, 0, 0, 0, 0, 1, 0, 1, 0, 1,],
+    maze = [[3, 0, 0, 0, 0, 1, 1, 1, 0, 0,],
+            [1, 1, 1, 1, 0, 1, 0, 0, 0, 1,],
+            [0, 0, 0, 0, 0, 0, 0, 1, 1, 1,],
+            [1, 1, 1, 1, 1, 0, 1, 0, 0, 0,],
+            [0, 0, 0, 1, 0, 0, 0, 0, 0, 0,],
+            [2, 1, 0, 1, 0, 1, 0, 1, 1, 1,],
+            [1, 1, 0, 0, 0, 1, 0, 1, 0, 1,],
             [0, 0, 0, 0, 0, 1, 0, 0, 0, 0,],
-            [1, 0, 0, 0, 0, 1, 0, 1, 1, 1,],
-            [0, 0, 0, 0, 0, 1, 0, 1, 0, 0,]]
+            [1, 1, 1, 1, 0, 1, 0, 1, 1, 1,],
+            [1, 0, 0, 0, 0, 1, 0, 0, 0, 0,]]
     return maze
+
+def small_good_maze():
+    maze= [[3, 0, 0],
+           [1, 1, 0],
+           [2, 0, 0]]
+    return maze
+
+def write_around(maze, x, y, val):
+    size = len(maze)
+    
+    for xi in range(-1, 2):
+        for yi in range(-1, 2):
+            if ((x + xi) // size > 0) or ((y + yi) // size > 0) or ((x + xi) < 0) or ((y + yi) < 0) or (xi == 0 and yi == 0):
+                continue
+            else:
+                maze[x+xi][y+yi] = val 
+    return maze
+    
+
+
+
+def solve_maze(maze):
+
+    # Find the starting point
+    for i,line in enumerate(maze):
+        line = np.array(line)
+        if len(np.where(line == 3)[0]) == 1:
+            start_pos = (i, np.where(line == 3)[0][0])
+            break 
+
+    print(start_pos)
+
+    return 0
 
 def draw():
     testing = tk.Canvas()
@@ -69,5 +102,6 @@ def window():
 
 
 
-
-window()
+if __name__ == '__main__':
+    #window()
+    write_around(good_maze(), 0, 0, 0)

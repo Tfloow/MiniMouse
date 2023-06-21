@@ -1,0 +1,14 @@
+name: Test
+run-name: unit test
+on:
+  push:
+    branches:
+      - main
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Run
+      run: python3 unit_test.py

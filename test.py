@@ -1,2 +1,2 @@
-print(43//10)
-print(43%10)
+for i in range(-1, 2):
+    print(i)
