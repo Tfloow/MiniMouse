@@ -16,6 +16,6 @@ jobs:
           sudo apt install python3-pip
           sudo pip install tk
           sudo pip install numpy
-          sudo pip install random
+#         sudo pip install random
       - name: Run
         run: python3 unit_test.py
