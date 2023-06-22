@@ -43,19 +43,45 @@ def small_good_maze():
            [2, 0, 0]]
     return maze
 
-def write_around(maze, x, y, val):
+def write_around(maze, x, y, val, span):
     size = len(maze)
     
-    for xi in range(-1, 2):
-        for yi in range(-1, 2):
-            if ((x + xi) // size > 0) or ((y + yi) // size > 0) or ((x + xi) < 0) or ((y + yi) < 0) or (xi == 0 and yi == 0):
+    # Top of the square
+    if(x-span < 0):
+        print("not needed")
+        pass
+    else:
+        for i in range(-span, span+1):
+            if (i+y < 0) or (i+y >= size):
+                print("nope")
+                pass 
+            else:
+                maze[x-span][y+i] = val
+    
+    # The middle
+    for i in range(-span+1, span):
+        print(i)
+        for j in range(-1, 2, 2):
+            if(x + i < 0) or (x + i >= size) or (y + j*span <0) or (y + j*span >= size):
                 continue
             else:
-                maze[x+xi][y+yi] = val 
-    return maze
+                maze[x + i][y + j*span] = val
     
-
-
+    # Bottom of the square
+    if(x+span >= size):
+        print("not needed")
+        pass
+    else:
+        for i in range(-span, span+1):
+            if (i+y < 0) or (i+y >= size):
+                print("nope")
+                pass 
+            else:
+                maze[x+span][y+i] = val
+        
+    
+    print(maze)
+    return maze
 
 def solve_maze(maze):
 
@@ -104,4 +130,4 @@ def window():
 
 if __name__ == '__main__':
     #window()
-    write_around(good_maze(), 0, 0, 0)
+    print(np.array(write_around(good_maze(), 5, 5, 10, 2)))
