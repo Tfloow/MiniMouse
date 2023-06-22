@@ -1,5 +1,4 @@
 import unittest
-import main
 from Solver import *
 
 class Test_Maze_Operation(unittest.TestCase):
