@@ -3,6 +3,7 @@ run-name: unit test
 on:
   push:
     branches:
+      - master
       - main
 jobs:
   unit:
